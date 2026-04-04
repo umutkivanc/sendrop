@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Send from "./pages/Send.tsx";
 import Receive from "./pages/Receive.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { supabase } from "./lib/supabase";
 
 const queryClient = new QueryClient();
 
