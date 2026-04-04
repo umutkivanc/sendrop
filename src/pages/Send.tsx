@@ -55,15 +55,17 @@ const Send = () => {
 
       setProgress(40);
 
-      const { data, error: fnError } = await supabase.functions.invoke("upload-file", {
-        body: {
-          keyword,
-          password,
-          fileName: file.name,
-          fileSize: file.size,
-          fileData: base64,
-        },
-      });
+      const filePath = `${keyword}/${file.name}`;
+
+      const { data, error } = await supabase.storage
+        .from("files") // bucket adı
+        .upload(filePath, file);
+
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("Yüklendi:", data);
+      }
 
       setProgress(90);
 
