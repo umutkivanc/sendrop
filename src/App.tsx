@@ -8,24 +8,39 @@ import Send from "./pages/Send.tsx";
 import Receive from "./pages/Receive.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { supabase } from "./lib/supabase";
-
+import { useEffect } from "react";
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/send" element={<Send />} />
-          <Route path="/receive" element={<Receive />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+
+
+
+const App = () => {
+  useEffect(() => {
+    const test = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      console.log("SESSION:", data);
+      console.log("ERROR:", error);
+    };
+
+    test();
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/send" element={<Send />} />
+            <Route path="/receive" element={<Receive />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
