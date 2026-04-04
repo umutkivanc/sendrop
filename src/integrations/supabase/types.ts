@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      files: {
+        Row: {
+          created_at: string
+          expires_at: string
+          file_name: string
+          file_path: string
+          file_size: number
+          id: string
+          is_downloaded: boolean
+          keyword: string
+          password_hash: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string
+          file_name: string
+          file_path: string
+          file_size: number
+          id?: string
+          is_downloaded?: boolean
+          keyword: string
+          password_hash: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          file_name?: string
+          file_path?: string
+          file_size?: number
+          id?: string
+          is_downloaded?: boolean
+          keyword?: string
+          password_hash?: string
+        }
+        Relationships: []
+      }
+      ip_blocks: {
+        Row: {
+          attempt_count: number
+          blocked_until: string | null
+          id: string
+          ip_address: string
+          keyword: string
+        }
+        Insert: {
+          attempt_count?: number
+          blocked_until?: string | null
+          id?: string
+          ip_address: string
+          keyword: string
+        }
+        Update: {
+          attempt_count?: number
+          blocked_until?: string | null
+          id?: string
+          ip_address?: string
+          keyword?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
