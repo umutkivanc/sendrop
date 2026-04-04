@@ -24,6 +24,10 @@ const Receive = () => {
     try {
       const { data, error: error } = await supabase.functions.invoke("download-file", {
         body: { keyword, password },
+      
+        console.log("DATA:", data);
+        console.log("ERROR:", error);
+      
       });
 
       if (error || data?.error) {
