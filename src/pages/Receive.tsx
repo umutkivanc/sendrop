@@ -22,12 +22,12 @@ const Receive = () => {
     setError("");
 
     try {
-      const { data, error: fnError } = await supabase.functions.invoke("download-file", {
+      const { data, error: error } = await supabase.functions.invoke("download-file", {
         body: { keyword, password },
       });
 
-      if (fnError || data?.error) {
-        throw new Error(data?.error || fnError?.message || "İndirme başarısız oldu.");
+      if (error || data?.error) {
+        throw new Error(data?.error || error?.message || "İndirme başarısız oldu.");
       }
 
       // data contains { fileData (base64), fileName }

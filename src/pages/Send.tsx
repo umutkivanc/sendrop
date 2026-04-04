@@ -69,8 +69,8 @@ const Send = () => {
 
       setProgress(90);
 
-      if (fnError || data?.error) {
-        throw new Error(data?.error || fnError?.message || "Yükleme başarısız oldu.");
+      if (error || data?.error) {
+        throw new Error(data?.error || error?.message || "Yükleme başarısız oldu.");
       }
 
       setProgress(100);
